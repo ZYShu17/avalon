@@ -28,7 +28,7 @@ ul {
 /* 针对手机和小屏幕设备的样式 */
 @media screen and (max-width: 600px) {
     body {
-        font-size: 18px; /* 在手机屏幕上使用更大的字体大小 */
+        font-size: 14px; /* 在手机屏幕上使用更大的字体大小 */
     }
 
     input[type="text"], button {
@@ -42,4 +42,21 @@ ul {
         margin: 10px;
         padding: 15px;
     }
+}
+
+
+#player-name-input label,
+#player-name-input input,
+#player-name-input button {
+    font-size: 18px; /* 调整为合适的大小 */
+}
+
+#player-list h2,
+#game-info h2,
+#game-start-restart button {
+    font-size: 20px; /* 调整为合适的大小 */
+}
+
+#game-info p {
+    font-size: 16px; /* 调整为合适的大小 */
 }
