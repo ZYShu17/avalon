@@ -34,6 +34,7 @@ socket.on('joinGameResponse', (isJoinSuccessful) => {
         // 关闭玩家名输入界面，打开玩家列表界面
         document.getElementById('player-name-input').style.display = 'none';
         document.getElementById('player-list').style.display = 'block';
+        document.getElementById('game-start-restart').style.display = 'block';
     } 
     if (isJoinSuccessful === 1) {
         // 显示错误信息
@@ -52,7 +53,7 @@ socket.on('joinGameResponse', (isJoinSuccessful) => {
 // 接收服务器对开始游戏请求的响应
 socket.on('gameStartResponse', () => {
     // 隐藏玩家列表，显示游戏信息
-    document.getElementById('player-list').style.display = 'none';
+    document.getElementById('game-start-restart').style.display = 'none';
     document.getElementById('game-info').style.display = 'block';
 });
 

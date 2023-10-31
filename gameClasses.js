@@ -32,6 +32,9 @@ class Room {
     assignRole(role) {
         let roles;
         switch (this.players.length) {
+            case 5:
+                roles = ["Merlin", "Percival", "Morgana", "Assassin", "Loyal Servant"];
+                break;
             case 6:
                 roles = ["Merlin", "Percival", "Morgana", "Assassin", "Loyal Servant", "Loyal Servant"];
                 break;
@@ -65,7 +68,7 @@ class Room {
 
     // 开始游戏
     initializeGame() {
-        if (this.players.length < 6 || this.players.length >10) {
+        if (this.players.length < 5 || this.players.length >10) {
             return false;
         } 
         if (this.started === false) {
