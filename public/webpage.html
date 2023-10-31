@@ -6,10 +6,16 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-
+    
     <!-- 玩家名输入区域 -->
 
     <div id="player-name-input">
+        <h1> Avalon</h1>
+        <h3 > 6 players: Merlin, Percival, 2 Loyal Servant <span class="vs-highlight">VS</span> Morgana, Assassin </h3>
+        <h3 > 7 players: Merlin, Percival, 3 Loyal Servant <span class="vs-highlight">VS</span> Morgana, Assassin, Oberon </h3>
+        <h3 > 8 players: Merlin, Percival, 3 Loyal Servant <span class="vs-highlight">VS</span> Morgana, Assassin, Minion of Mordred </h3>
+        <h3 > 9 players: Merlin, Percival, 4 Loyal Servant <span class="vs-highlight">VS</span> Mordred, Morgana, Assassin </h3>
+        <h3 > 10 players: Merlin, Percival, 4 Loyal Servant <span class="vs-highlight">VS</span> Mordred, Morgana, Assassin, Minion of Mordred </h3>
         <form onsubmit="joinGame(); return false;">
             <label for="playerName">Enter your name:</label>
             <input type="text" id="playerName" placeholder="Your Name">
@@ -20,7 +26,7 @@
     <!-- 显示当前房间中玩家列表的区域，最初隐藏 -->
     <div id="player-list" style="display:none;">
         <h2>Players in Room:</h2>
-        <ul id="playerList"></ul>
+        <p id="playerList"></p>
         <button onclick="startGame()">Start Game</button>
         <button onclick="restartGame()">Restart Game</button>
     </div>

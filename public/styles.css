@@ -1,0 +1,40 @@
+/* 基本样式 */
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h3 {
+    text-align: left; /* 确保文本是左对齐的 */
+    margin-left: 20px; /* 您可以根据需要调整这个值 */
+}
+
+.vs-highlight {
+    color: red; /* 使 'VS' 文本变红 */
+}
+
+#player-name-input, #player-list, #game-info {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 针对手机和小屏幕设备的样式 */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 18px; /* 在手机屏幕上使用更大的字体大小 */
+    }
+
+    input[type="text"], button {
+        width: 80%; /* 使输入框和按钮更宽，以适应屏幕 */
+        margin: 10px 0; /* 增加上下边距 */
+        padding: 10px; /* 增加填充使其更易点击 */
+        font-size: 16px; /* 输入框和按钮的字体也相应增大 */
+    }
+
+    #player-name-input, #player-list, #game-info {
+        margin: 10px;
+        padding: 15px;
+    }
+}
