@@ -38,7 +38,7 @@ ul {
         font-size: 16px; /* 输入框和按钮的字体也相应增大 */
     }
 
-    #player-name-input, #player-list, #game-info {
+    #game-introduction, #player-name-input, #player-list, #game-info, #game-start-restart {
         margin: 10px;
         padding: 15px;
     }
