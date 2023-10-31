@@ -20,10 +20,12 @@
 
     <!-- 玩家名输入区域 -->
     <div id="player-name-input">
-            <form onsubmit="joinGame(); return false;">
-            <label for="playerName">Enter your name:</label>
-            <input type="text" id="playerName" placeholder="Your Name">
-            <button type="submit">Join Game</button>
+            <label for="playerName">Enter your name    :</label>
+            <input type="text" id="playerName" placeholder="Your Name"> <br><br>
+            <label for="playerName">Enter your password:</label>
+            <input type="text" id="password" placeholder="Password"> <br><br>
+            <button onclick="joinGame()">Join Game</button>
+            <button onclick="reconnect()">Reconnect</button>
         </form>
     </div>
 
@@ -40,6 +42,17 @@
     </div>
 
     <!-- 显示游戏信息（如角色技能等）的区域，最初隐藏 -->
+    <div id="game-info" style="display:none;">
+        <h2>Your name is:</h2>
+        <p id="idInfo"></p>
+        <h2>Your role is:</h2>
+        <p id="roleInfo"></p>
+        <h2>You can see:</h2>
+        <p id="skillInfo"></p>
+        <button onclick="restartGame()">Restart Game</button>
+    </div>
+
+    <!-- 显示任务历史信息（如角色技能等）的区域，最初隐藏 -->
     <div id="game-info" style="display:none;">
         <h2>Your name is:</h2>
         <p id="idInfo"></p>

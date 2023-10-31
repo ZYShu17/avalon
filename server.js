@@ -17,14 +17,40 @@ let room = new Room(); // 存储游戏房间
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
 
-    socket.on('joinGame', (playerName) => {
+    socket.on('joinGame', (playerName, password) => {
         // 检查 playerName 是否有效（非空且不重复）
-        const isJoinSuccessful = room.addPlayer(playerName, socket.id);
+        const isJoinSuccessful = room.addPlayer(playerName, password, socket.id);
         socket.emit('joinGameResponse', isJoinSuccessful);
 
         // 如果加入成功，可能还需要更新所有客户端的玩家列表
         if (isJoinSuccessful === 0) {
             updateAllPlayersList();
+            // 输出玩家创建的信息
+            console.log(`A player named ${playerName}, with password ${password}, has joined.`);
+        }
+    });
+
+    socket.on('Iamback', (playerName, password) => {
+        // 检查 playerName 是否有效（非空且不重复）
+        const returnplayer = room.reconnect(playerName, password, socket.id);
+        socket.emit('Iamback', returnplayer);
+        // 如果加入成功
+        if (returnplayer != null) {
+            socket.emit('joinGameResponse', 0);
+            updateAllPlayersList();            
+        } else {
+            io.to(socket.id).emit('reconnectFail');
+        }
+        // 如果加入成功，游戏已经开始
+        if (returnplayer != null && room.started === true) {
+            io.emit('gameStartResponse');
+            // 向玩家发送角色和技能效果
+            io.to(returnplayer.socketId).emit('showId', returnplayer.name);
+            console.log(`Sent id to ${returnplayer.socketId}:`, returnplayer.name);
+            io.to(returnplayer.socketId).emit('showRole', returnplayer.role);
+            console.log(`Sent Role to ${returnplayer.socketId}:`, returnplayer.role);
+            io.to(returnplayer.socketId).emit('showSkill', returnplayer.useSkill(room.players));
+            console.log(`Sent Skill to ${returnplayer.socketId}`, returnplayer.useSkill(room.players));
         }
     });
 

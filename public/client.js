@@ -3,7 +3,15 @@ const socket = io();
 // 加入游戏的函数
 function joinGame() {
     var playerName = document.getElementById('playerName').value;
-    socket.emit('joinGame', playerName);
+    var password = document.getElementById('password').value;
+    socket.emit('joinGame', playerName, password);
+}
+
+// 刷新页面，重新加入游戏的函数
+function reconnect() {
+    var playerName = document.getElementById('playerName').value;
+    var password = document.getElementById('password').value;
+    socket.emit('Iamback', playerName, password);
 }
 
 // 开始游戏的函数
@@ -60,8 +68,14 @@ socket.on('gameStartResponse', () => {
 // 游戏启动失败
 socket.on('gameStartFail', () => {
     // 游戏启动失败，弹出警告
-    alert('Game start fails. 6-10 players required.')
+    alert('Game start fails. 5-10 players required.')
 });
+
+// 游戏重连失败
+socket.on('reconnectFail', () =>{
+    // 游戏重连失败，弹出警告
+    alert('Reconnect fails. Check name and password.')
+})
 
 // 更新玩家列表
 socket.on('updatePlayerList', (players) => {
@@ -91,6 +105,9 @@ socket.on('showSkill', (result) => {
 });
 
 socket.on('gameReset', () => {
+    //清除存储的用户名
+    sessionStorage.removeItem('playerName');
+
     // 隐藏游戏信息页面，显示玩家名输入页面
     document.getElementById('game-info').style.display = 'none';
     document.getElementById('player-list').style.display = 'none';
