@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 let room = new Room(); // 存储游戏房间
+let display = null; //投票显示
 
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
@@ -51,6 +52,7 @@ io.on('connection', (socket) => {
             console.log(`Sent Role to ${returnplayer.socketId}:`, returnplayer.role);
             io.to(returnplayer.socketId).emit('showSkill', returnplayer.useSkill(room.players));
             console.log(`Sent Skill to ${returnplayer.socketId}`, returnplayer.useSkill(room.players));
+            io.emit('show_vote', display);
         }
     });
 
@@ -86,6 +88,38 @@ io.on('connection', (socket) => {
 
         // 可以向所有客户端广播重置事件，如果需要
         io.emit('gameReset');
+    });
+
+    //公开投票
+    socket.on('publicvote', (vote) => {
+        // 在 players 数组中找到对应的 player
+        let player = room.players.find(p => p.socketId === socket.id);
+        if (player != null){
+            player.public_voter(vote, room);
+        }
+        
+        if (room.public_voted === room.players.length) {
+            display = room.count_public_vote();
+            io.emit('show_vote', display);
+        }
+
+        console.log('${player.name} voted :', vote)
+
+    });
+
+    //匿名投票
+    socket.on('privatevote', (vote) => {
+        // 在 players 数组中找到对应的 player
+        let player = room.players.find(p => p.socketId === socket.id);
+        if (player != null){
+            player.private_voter(vote, room);
+        }
+        if (room.private_voted === room.players.length) {
+            display = room.count_private_vote();
+            io.emit('show_vote', display);
+        }
+
+        console.log('${player.name} voted :', vote)
     });
 
 });

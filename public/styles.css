@@ -14,7 +14,7 @@ h3 {
     color: red; /* 使 'VS' 文本变红 */
 }
 
-#player-name-input, #player-list, #game-info {
+#player-name-input, #player-list, #game-info, #container1, #container2, #voteResultDisplay{
     margin: 20px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -59,4 +59,35 @@ ul {
 
 #game-info p {
     font-size: 16px; /* 调整为合适的大小 */
+}
+
+
+#container1 label {
+    font-size: 18px;
+}
+
+#container2 label {
+    font-size: 18px;
+}
+
+.dropdown {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }

@@ -63,6 +63,31 @@
         <button onclick="restartGame()">Restart Game</button>
     </div>
 
+    <!-- 公开投票的区域，最初隐藏 -->
+    <div id="container1" style="display:none;">
+        <label> Open voter</label>
+        <select id="publicvoteSelect" class="dropdown">
+            <option value="Approve">Approve</option>
+            <option value="Reject">Reject</option>
+        </select>
+        <button onclick="publicvote()" class="button">Open voting </button>
+    </div>
+
+    <!-- 匿名投票的区域，最初隐藏 -->
+    <div id="container2" style="display:none;">
+        <label> Anonymous voter</label>
+        <select id="privatevoteSelect" class="dropdown">
+            <option value="Success">Success</option>
+            <option value="Fail">Fail</option>
+            <option value="Not in Mission">Not in Mission</option>
+        </select>
+        <button onclick="privatevote()" class="button">Anonymous voting </button>
+    </div>
+
+    <!-- 投票结果显示区域 -->
+    <div id="voteResultDisplay" style="display:none;"></div>
+
+
     <script src="client.js"></script>
 </body>
 </html>

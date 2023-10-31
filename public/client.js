@@ -36,6 +36,22 @@ function restartGame() {
     socket.emit('restartGame');
 }
 
+//公开投票
+function publicvote() {
+    // 获取下拉菜单的值
+    var vote = document.getElementById('publicvoteSelect').value;
+    socket.emit('publicvote', vote)
+}
+
+//匿名投票
+function privatevote() {
+    // 获取下拉菜单的值
+    var vote = document.getElementById('privatevoteSelect').value;
+    socket.emit('privatevote', vote)
+}
+
+
+
 // 接收服务器对加入游戏请求的响应
 socket.on('joinGameResponse', (isJoinSuccessful) => {
     if (isJoinSuccessful === 0) {
@@ -63,6 +79,9 @@ socket.on('gameStartResponse', () => {
     // 隐藏玩家列表，显示游戏信息
     document.getElementById('game-start-restart').style.display = 'none';
     document.getElementById('game-info').style.display = 'block';
+    document.getElementById('container1').style.display = 'block';
+    document.getElementById('container2').style.display = 'block';
+    document.getElementById('voteResultDisplay').style.display = 'block';
 });
 
 // 游戏启动失败
@@ -111,6 +130,17 @@ socket.on('gameReset', () => {
     // 隐藏游戏信息页面，显示玩家名输入页面
     document.getElementById('game-info').style.display = 'none';
     document.getElementById('player-list').style.display = 'none';
+    document.getElementById('container1').style.display = 'none';
+    document.getElementById('container2').style.display = 'none';
+    document.getElementById('voteResultDisplay').style.display = 'none';
     document.getElementById('player-name-input').style.display = 'block';
 })
 
+// 展示投票结果
+socket.on('show_vote', (result) => {
+    // 获取显示结果的元素
+    const resultDisplay = document.getElementById('voteResultDisplay');
+
+    // 设置元素的内容为接收到的结果
+    resultDisplay.innerHTML = result;
+});
