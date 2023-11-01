@@ -85,6 +85,7 @@ io.on('connection', (socket) => {
         // 重置房间信息和玩家状态
         // 假设 `resetGame` 是一个实现重置逻辑的函数
         room.restartGame();
+        display = null;
 
         // 可以向所有客户端广播重置事件，如果需要
         io.emit('gameReset');
