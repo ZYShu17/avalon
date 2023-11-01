@@ -132,6 +132,7 @@ socket.on('gameReset', () => {
     document.getElementById('player-list').style.display = 'none';
     document.getElementById('container1').style.display = 'none';
     document.getElementById('container2').style.display = 'none';
+    document.getElementById('game-start-restart').style.display = 'none';
     document.getElementById('voteResultDisplay').style.display = 'none';
     document.getElementById('player-name-input').style.display = 'block';
 })
