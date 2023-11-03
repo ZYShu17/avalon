@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
             });
         } else {
             // 显示错误信息
-            io.emit('gameStartFail');
+            io.to(socket.id).emit('gameStartFail');
         }
     });
 

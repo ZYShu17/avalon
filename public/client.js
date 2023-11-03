@@ -36,6 +36,17 @@ function updatePlayerList(players) {
     });
 }
 
+function confirmRestart() {
+    // 显示确认对话框
+    var confirmRestart = confirm('Are you sure to restart the game?');
+    if (confirmRestart) {
+        //如果玩家点击确认，重置游戏
+        restartGame();
+    } else {
+        console.log('Game restart cancelled.');
+    }
+}
+
 function restartGame() {
     // 通知服务器重置游戏
     socket.emit('restartGame');
