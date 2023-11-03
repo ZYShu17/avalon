@@ -25,49 +25,75 @@ ul {
     list-style-type: none;
 }
 
+/* 通用按钮样式 */
+.button,
+input[type="submit"],
+input[type="button"],
+button {
+    display: block; /* 使按钮块级显示，占满一行 */
+    width: 20%; /* 或者可以设置为某个固定的宽度，如 width: 300px; */
+    margin: 20px auto; /* 上下边距为20px，左右自动（居中） */
+    padding: 15px 20px; /* 按钮内边距，可根据需求调整大小 */
+    font-size: 18px; /* 按钮文字大小，可根据需求调整 */
+    color: white; /* 按钮文字颜色 */
+    background-color: #007bff; /* 按钮背景颜色 */
+    border: none; /* 去除边框 */
+    border-radius: 4px; /* 边框圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型图标 */
+    text-align: center; /* 文字居中 */
+}
+
+/* 按钮悬停效果 */
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover {
+    background-color: #0056b3; /* 按钮悬停时的背景颜色 */
+}
+
 /* 针对手机和小屏幕设备的样式 */
 @media screen and (max-width: 600px) {
     body {
-        font-size: 14px; /* 在手机屏幕上使用更大的字体大小 */
+        font-size: 14px;
     }
 
-    input[type="text"], button {
-        width: 80%; /* 使输入框和按钮更宽，以适应屏幕 */
-        margin: 10px 0; /* 增加上下边距 */
-        padding: 10px; /* 增加填充使其更易点击 */
-        font-size: 16px; /* 输入框和按钮的字体也相应增大 */
+    .button,
+    input[type="submit"],
+    input[type="button"],
+    button {
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
     }
 
-    #game-introduction, #player-name-input, #player-list, #game-info, #game-start-restart {
+    #player-name-input,
+    #player-list,
+    #game-info,
+    #game-start-restart,
+    #container1,
+    #container2,
+    #voteResultDisplay {
         margin: 10px;
         padding: 15px;
     }
 }
 
-
 #player-name-input label,
 #player-name-input input,
-#player-name-input button {
-    font-size: 18px; /* 调整为合适的大小 */
+#player-name-input button,
+#container1 label,
+#container2 label {
+    font-size: 18px;
 }
 
 #player-list h2,
 #game-info h2,
 #game-start-restart button {
-    font-size: 20px; /* 调整为合适的大小 */
+    font-size: 20px;
 }
 
 #game-info p {
-    font-size: 16px; /* 调整为合适的大小 */
-}
-
-
-#container1 label {
-    font-size: 18px;
-}
-
-#container2 label {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .dropdown {
@@ -76,18 +102,4 @@ ul {
     border: 2px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-}
-
-.button {
-    padding: 10px 20px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.button:hover {
-    background-color: #0056b3;
 }

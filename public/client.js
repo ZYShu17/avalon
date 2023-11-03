@@ -14,6 +14,11 @@ function reconnect() {
     socket.emit('Iamback', playerName, password);
 }
 
+// 刷新页面
+function fresh() {
+    socket.emit('fresh');
+}
+
 // 开始游戏的函数
 function startGame() {
     socket.emit('startGameRequest');

@@ -34,7 +34,6 @@ io.on('connection', (socket) => {
     socket.on('Iamback', (playerName, password) => {
         // 检查 playerName 是否有效（非空且不重复）
         const returnplayer = room.reconnect(playerName, password, socket.id);
-        socket.emit('Iamback', returnplayer);
         // 如果加入成功
         if (returnplayer != null) {
             socket.emit('joinGameResponse', 0);
@@ -55,6 +54,21 @@ io.on('connection', (socket) => {
             io.emit('show_vote', display);
         }
     });
+
+    socket.on('fresh', () => {
+        //刷新
+        const returnplayer = room.fresh(socket.id);
+        io.emit('gameStartResponse');
+        // 向玩家发送角色和技能效果
+        io.to(returnplayer.socketId).emit('showId', returnplayer.name);
+        console.log(`Sent id to ${returnplayer.socketId}:`, returnplayer.name);
+        io.to(returnplayer.socketId).emit('showRole', returnplayer.role);
+        console.log(`Sent Role to ${returnplayer.socketId}:`, returnplayer.role);
+        io.to(returnplayer.socketId).emit('showSkill', returnplayer.useSkill(room.players));
+        console.log(`Sent Skill to ${returnplayer.socketId}`, returnplayer.useSkill(room.players));
+        io.emit('show_vote', display);
+
+    })
 
     function updateAllPlayersList() {
         var playerNames = room.players.map(player => player.name); // 假设你有一个Room实例叫room

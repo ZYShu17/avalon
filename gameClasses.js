@@ -40,6 +40,15 @@ class Room {
         return null;
     }
 
+    fresh(id) {
+        for (let player of this.players) {
+            if (player.socketId == id) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     // 分配角色
     assignRole(role) {
         let roles;
